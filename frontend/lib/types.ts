@@ -23,8 +23,12 @@ export interface User {
   role: UserRole;
   city: string;
   state: string;
-  avatar?: string;
   createdAt: Date;
+}
+
+export interface SignupUserData extends Partial<User> {
+  password?: string;
+  organization_name?: string;
 }
 
 export interface Volunteer extends User {
@@ -123,7 +127,7 @@ export interface AuthContextType {
   userRole: UserRole | null;
   isAuthenticated: boolean;
   login: (email: string, password: string, role: UserRole) => Promise<void>;
-  signup: (userData: Partial<User>, role: UserRole) => Promise<void>;
+  signup: (userData: SignupUserData, role: UserRole) => Promise<any>;
   logout: () => void;
 }
 
